@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:background="#FAFAFA"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#FAFAFA">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/poppins_semibold"
+            android:id="@+id/tv_upcoming_movie"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:text="@string/txt_upcoming_movie"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_upcoming_movie"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            tools:itemCount="1"
+            tools:listitem="@layout/list_item_movie_popular" />
+
+        <include
+            android:background="@color/white"
+            android:id="@+id/view_no_upcoming_data"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            layout="@layout/view_empty_data" />
+
+        <include
+            android:id="@+id/view_upcoming_loading"
+            layout="@layout/view_loading" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/poppins_semibold"
+            android:id="@+id/tv_popular_movie"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:text="@string/txt_popular_movie"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_popular_movie"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:nestedScrollingEnabled="false"
+            android:visibility="gone" />
+
+        <include
+            android:background="@color/white"
+            android:id="@+id/view_no_popular_data"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            layout="@layout/view_empty_data" />
+
+        <include
+            android:id="@+id/view_popular_loading"
+            layout="@layout/view_loading" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

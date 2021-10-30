@@ -1,0 +1,61 @@
+import com.ptut.cache.MovieType;
+import java.lang.Boolean;
+import kotlin.collections.List;
+import org.threeten.bp.LocalDate;
+
+CREATE TABLE Movie (
+     movieId INTEGER NOT NULL PRIMARY KEY,
+     adult INTEGER AS Boolean DEFAULT 0,
+     backDropPath TEXT NOT NULL,
+     genreIds TEXT AS List<Int> NOT NULL,
+     originalLanguage TEXT NOT NULL,
+     originalTitle TEXT NOT NULL,
+     overview TEXT NOT NULL,
+     popularity REAL NOT NULL,
+     posterPath TEXT NOT NULL,
+     releaseDate TEXT AS LocalDate NOT NULL,
+     movieTitle TEXT NOT NULL,
+     video INTEGER AS Boolean DEFAULT 0,
+     voteAverage REAL AS Float NOT NULL,
+     voteCount INTEGER NOT NULL,
+     movieType TEXT AS MovieType,
+     isFavorite INTEGER AS Boolean NOT NULL
+);
+
+insertMovie:
+INSERT OR REPLACE INTO Movie(
+     movieId,
+     adult,
+     backDropPath,
+     genreIds,
+     originalLanguage,
+     originalTitle,
+     overview,
+     popularity,
+     posterPath,
+     releaseDate ,
+     movieTitle,
+     video,
+     voteAverage,
+     voteCount,
+     movieType,
+     isFavorite
+)
+VALUES(?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+
+selectAllMoviesByType:
+SELECT * FROM Movie WHERE movieType=?;
+
+selectMovieById:
+SELECT * FROM Movie WHERE movieId=? LIMIT 1;
+
+selectAllMoviesFavorite:
+SELECT * FROM Movie WHERE isFavorite=1;
+
+updateMovieFavorite:
+UPDATE Movie SET isFavorite = ? WHERE movieId=? AND movieType=?;
+
+deleteAllMovie:
+DELETE FROM Movie;
+
+

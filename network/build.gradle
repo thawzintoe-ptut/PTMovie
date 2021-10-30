@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk BuildConfig.compileSdk
+
+    defaultConfig {
+        minSdk BuildConfig.minSdk
+        targetSdk BuildConfig.targetSdk
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org\""
+            buildConfigField "String", "API_KEY", "\"67dd3aa657243f43b24ad61cb9ecef6d\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org\""
+            buildConfigField "String", "API_KEY", "\"67dd3aa657243f43b24ad61cb9ecef6d\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(':data')
+    kaptAndroidTest(Dagger.compiler)
+    //Moshi
+    implementation(Moshi.core)
+    kapt(Moshi.code_gen)
+
+    //OkHttp
+    implementation(OkHttp.client)
+    implementation(OkHttp.logger)
+
+    //Retrofit
+    api(Retrofit.core)
+    implementation(Retrofit.moshi_converter)
+
+    //Dagger
+    implementation(Dagger.core)
+    kapt(Dagger.compiler)
+
+    //JavaxInject
+    implementation(CommonLibs.javaxInject)
+
+    //Logging
+    implementation(CommonLibs.timber)
+
+    //chuck
+    debugApi(Chuck.core)
+    releaseApi(Chuck.no_op)
+}

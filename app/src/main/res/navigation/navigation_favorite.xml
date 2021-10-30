@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_favorite"
+    app:startDestination="@id/movieFavoriteFragment">
+
+    <fragment
+        android:id="@+id/movieFavoriteFragment"
+        android:name="com.ptut.ptmovie.feature.favorite.MovieFavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_movie_favorite"/>
+</navigation>

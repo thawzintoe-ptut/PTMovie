@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">PTMovie</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="about">About</string>
+    <string name="txt_popular_movie">Popular Movies</string>
+    <string name="content_img_movie_poster">content_image_upcoming_movie</string>
+    <string name="txt_upcoming_movie">UpComing Movie</string>
+    <string name="txt_see_all">See all</string>
+    <string name="txt_continue">Continue To Watch</string>
+    <string name="app_description">Enjoy Your Life with Movie</string>
+    <string name="something_went_wrong">Something went Wrong</string>
+    <string name="no_data">No Movie Available</string>
+    <string name="no_favorite_data">No Favorite Movie </string>
+    <string name="txt_retry">Download &amp; Retry</string>
+    <string name="iv_poster_transition">poster_transition</string>
+    <string name="txt_vote_average">Vote Average</string>
+    <string name="txt_popularity">Popularity</string>
+    <string name="txt_vote_count">Vote Count</string>
+</resources>
