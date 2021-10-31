@@ -20,6 +20,8 @@ import com.ptut.ptmovie.feature.moviedetail.MovieDetailActivity
 import com.ptut.ptmovie.feature.utils.initializeGrid
 import com.ptut.ptmovie.feature.utils.initializeHorizontal
 
+const val MOVIE_UPCOMING = "upcoming"
+const val MOVIE_POPULAR = "popular"
 class MovieHomeFragment :
     MvpFragment<FragmentMovieHomeBinding, MovieHomeView, MovieHomeViewModel>(),
     MovieHomeView,
@@ -169,11 +171,11 @@ class MovieHomeFragment :
         when (v) {
             binding.viewNoUpcomingData.btnEmpty -> {
                 handleUpComingUI(loadingUpcomingView = View.VISIBLE)
-                viewModel.downloadMovies("upcoming")
+                viewModel.downloadMovies(MOVIE_UPCOMING)
             }
             binding.viewNoPopularData.btnEmpty -> {
                 handlePopularUI(loadingPopularView = View.VISIBLE)
-                viewModel.downloadMovies("popular")
+                viewModel.downloadMovies(MOVIE_POPULAR)
             }
         }
     }

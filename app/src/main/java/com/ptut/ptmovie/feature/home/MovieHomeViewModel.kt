@@ -84,22 +84,22 @@ class MovieHomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 getMoviesRequest.execute(movieType)
-               if(movieType == "upcoming"){
+               if(movieType == MOVIE_UPCOMING){
                    _movieUpComingListLD.postValue(AsyncViewResource.Loading())
-                   getMovies.execute(movieType).collect { movieList ->
+                   getMovies.execute(MOVIE_UPCOMING).collect { movieList ->
                        val movies = movieList.map { movieMapper.map(it) }
                        _movieUpComingListLD.postValue(AsyncViewResource.Success(movies))
                    }
                }else{
                    _moviePopularListLD.postValue(AsyncViewResource.Loading())
-                   getMovies.execute(movieType).collect { movieList ->
+                   getMovies.execute(MOVIE_POPULAR).collect { movieList ->
                        val movies = movieList.map { movieMapper.map(it) }
                        _moviePopularListLD.postValue(AsyncViewResource.Success(movies))
                    }
                }
             }catch (t:Throwable){
                 Timber.e(t)
-                if(movieType == "upcoming"){
+                if(movieType == MOVIE_UPCOMING){
                     _movieUpComingListLD.postValue(AsyncViewResource.Error(t))
                 }else{
                     _moviePopularListLD.postValue(AsyncViewResource.Error(t))

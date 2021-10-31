@@ -48,6 +48,8 @@ dependencies {
     implementation(AndroidXAppCompat.recycler_view)
     implementation(AndroidXAppCompat.recycler_selection)
     implementation(MaterialDesign.material)
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     testImplementation(AndroidJunit.junit)
     androidTestImplementation(AndroidJunit.junit_ext)
     androidTestImplementation(AndroidJunit.junit_espresso_core)

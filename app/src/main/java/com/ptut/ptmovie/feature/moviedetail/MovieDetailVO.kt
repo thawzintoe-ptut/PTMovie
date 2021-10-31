@@ -8,7 +8,7 @@ import javax.inject.Inject
 data class MovieDetailVO(
     val adult: Boolean,
     val backdropPath: String,
-    val genreIds: List<Int>,
+    val genreIds: List<Long>,
     val id: Long,
     val originalLanguage: String,
     val originalTitle: String,
