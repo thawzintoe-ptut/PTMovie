@@ -6,7 +6,9 @@
       <module name="PTMovie.appbase" target="11" />
       <module name="PTMovie.buildSrc" target="11" />
       <module name="PTMovie.cache" target="11" />
+      <module name="PTMovie.featureRoom" target="11" />
       <module name="PTMovie.network" target="11" />
+      <module name="PTMovie.roomdb" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

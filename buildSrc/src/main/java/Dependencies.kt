@@ -209,3 +209,15 @@ object SqlDelight {
     const val flow_plugin = "com.squareup.sqldelight:coroutines-extensions-jvm:$version"
 }
 
+object RoomDb{
+    private const val room_version = ""
+    const val roomRuntime =  "androidx.room:room-runtime:$room_version"
+    const val roomCompiler =  "androidx.room:room-compiler:$room_version"
+    const val roomRx2 =  "androidx.room:room-rxjava2:$room_version"
+    const val roomRx3 =  "androidx.room:room-rxjava3:$room_version"
+    const val roomGuava =  "androidx.room:room-guava:$room_version"
+    const val roomTestHelper =  "androidx.room:room-testing:$room_version"
+    const val roomPaging =  "androidx.room:room-paging:2.4.0-beta01"
+
+}
+
