@@ -10,12 +10,12 @@ import kotlinx.coroutines.withContext
  */
 abstract class FlowCoroutineUseCase<I, O> {
 
-    suspend fun execute(param: I): Flow<O> {
+    fun execute(param: I): Flow<O> {
         return provide(param)
             .flowOn(Dispatchers.IO)
     }
 
-    protected abstract suspend fun provide(
+    protected abstract fun provide(
         param: I
     ): Flow<O>
 

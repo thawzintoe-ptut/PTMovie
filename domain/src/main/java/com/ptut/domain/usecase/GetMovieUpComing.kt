@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 class GetMovieUpComing @Inject constructor(
     private val movieRepository: MovieRepository
-) : CoroutineUseCase<String,Flow<List<MovieDomain>>>(){
-    override suspend fun provide(params: String): Flow<List<MovieDomain>> {
-        return flowOf(movieRepository.getMovieListByType(params))
+) : FlowCoroutineUseCase<String,List<MovieDomain>>(){
+    override fun provide(params: String): Flow<List<MovieDomain>> {
+        return movieRepository.getMovieListByType(params)
     }
 }
