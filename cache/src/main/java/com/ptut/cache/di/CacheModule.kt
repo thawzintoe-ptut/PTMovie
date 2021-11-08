@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import com.ptut.cache.MovieCacheDataSourceImpl
 import com.ptut.cache.columnadapter.IntegerArrayColumnAdapter
 import com.ptut.cache.columnadapter.LocalDateColumnAdapter
+import com.ptut.cache.columnadapter.LongArrayColumnAdapter
 import com.ptut.cache.database.AppDatabase
 import com.ptut.cache.database.Movie
 import com.ptut.data.dataSource.MovieCacheDataSource
@@ -40,7 +41,7 @@ abstract class CacheModule {
             return AppDatabase(
                 sqlDriver,
                 Movie.Adapter(
-                    IntegerArrayColumnAdapter,
+                    LongArrayColumnAdapter,
                     LocalDateColumnAdapter,
                     EnumColumnAdapter()
                 )

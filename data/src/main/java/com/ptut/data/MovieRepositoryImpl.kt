@@ -5,6 +5,8 @@ import com.ptut.data.dataSource.MovieNetworkDataSource
 import com.ptut.data.entity.MovieDataToDomainMapper
 import com.ptut.domain.model.MovieDomain
 import com.ptut.domain.repository.MovieRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -12,9 +14,9 @@ class MovieRepositoryImpl @Inject constructor(
     private val movieCacheDataSource: MovieCacheDataSource,
     private val movieDataToDomainMapper: MovieDataToDomainMapper
 ) : MovieRepository {
-    override fun getMovieListByType(movieType: String): List<MovieDomain> {
+    override fun getMovieListByType(movieType: String): Flow<List<MovieDomain>> {
         return movieCacheDataSource.getMoviesByType(movieType)
-            .map(movieDataToDomainMapper::map)
+            .map { movies -> movies.map(movieDataToDomainMapper::map) }
     }
 
     override fun downloadMovies(movieType: String) {
@@ -26,14 +28,14 @@ class MovieRepositoryImpl @Inject constructor(
         movieCacheDataSource.setMovieFavorite(isFavorite, movieId, movieType)
     }
 
-    override fun getMovieFavorite(): List<MovieDomain> {
+    override fun getMovieFavorite():Flow<List<MovieDomain>> {
         return movieCacheDataSource.getFavoriteMovies()
-            .map(movieDataToDomainMapper::map)
+            .map { movies -> movies.map(movieDataToDomainMapper::map) }
     }
 
-    override fun getMovieById(movieId: Long): MovieDomain {
-        val movieDetail = movieCacheDataSource.getMovieById(movieId)
-        return movieDataToDomainMapper.map(movieDetail)
+    override fun getMovieById(movieId: Long): Flow<MovieDomain> {
+       return movieCacheDataSource.getMovieById(movieId)
+           .map(movieDataToDomainMapper::map)
     }
 
 
