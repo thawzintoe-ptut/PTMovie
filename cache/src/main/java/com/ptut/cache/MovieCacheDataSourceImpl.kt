@@ -4,6 +4,11 @@ import com.ptut.cache.database.AppDatabase
 import com.ptut.cache.mapper.MovieCacheToDataMapper
 import com.ptut.data.dataSource.MovieCacheDataSource
 import com.ptut.data.entity.MovieData
+import com.squareup.sqldelight.runtime.coroutines.asFlow
+import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.squareup.sqldelight.runtime.coroutines.mapToOne
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MovieCacheDataSourceImpl @Inject constructor(
@@ -35,15 +40,18 @@ class MovieCacheDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun getMoviesByType(movieType: String): List<MovieData> {
+    override fun getMoviesByType(movieType: String): Flow<List<MovieData>> {
         return db.movieQueries.selectAllMoviesByType(movieType.toMovieType())
-            .executeAsList()
-            .map(movieCacheMapper::map)
+            .asFlow()
+            .mapToList()
+            .map { movies -> movies.map(movieCacheMapper::map) }
     }
 
-    override fun getFavoriteMovies(): List<MovieData> {
-        return db.movieQueries.selectAllMoviesFavorite().executeAsList().
-                map(movieCacheMapper::map)
+    override fun getFavoriteMovies(): Flow<List<MovieData>> {
+        return db.movieQueries.selectAllMoviesFavorite()
+            .asFlow()
+            .mapToList()
+            .map { movies -> movies.map(movieCacheMapper::map) }
     }
 
     override fun deleteAllMovies() {
@@ -59,9 +67,11 @@ class MovieCacheDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun getMovieById(movieId: Long): MovieData {
-        val movieDetail = db.movieQueries.selectMovieById(movieId).executeAsOne()
-        return movieCacheMapper.map(movieDetail)
+    override fun getMovieById(movieId: Long): Flow<MovieData> {
+        return db.movieQueries.selectMovieById(movieId)
+            .asFlow()
+            .mapToOne()
+            .map(movieCacheMapper::map)
     }
 
     private fun String.toMovieType():MovieType{
