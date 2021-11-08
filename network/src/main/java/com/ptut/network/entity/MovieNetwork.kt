@@ -15,7 +15,7 @@ data class MovieNetwork(
     @Json(name = "backdrop_path")
     val backdropPath: String,
     @Json(name = "genre_ids")
-    val genreIds: List<Int>,
+    val genreIds: List<Long>,
     @Json(name = "id")
     val id: Long,
     @Json(name = "original_language")

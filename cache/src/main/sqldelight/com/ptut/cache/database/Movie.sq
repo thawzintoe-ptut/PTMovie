@@ -7,7 +7,7 @@ CREATE TABLE Movie (
      movieId INTEGER NOT NULL PRIMARY KEY,
      adult INTEGER AS Boolean DEFAULT 0,
      backDropPath TEXT NOT NULL,
-     genreIds TEXT AS List<Int> NOT NULL,
+     genreIds TEXT AS List<Long> NOT NULL,
      originalLanguage TEXT NOT NULL,
      originalTitle TEXT NOT NULL,
      overview TEXT NOT NULL,
