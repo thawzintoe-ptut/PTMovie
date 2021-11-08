@@ -45,15 +45,6 @@ class MovieFavoriteViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             requestMovieFavorite.execute(
                 RequestMovieFavorite.Params(isFavorite,movieId, movieType))
-            _movieFavoriteListLD.postValue(AsyncViewResource.Loading())
-            try {
-                getFavoriteMovies.execute(Unit).collect { movieList ->
-                    val movies = movieList.map { movieMapper.map(it) }
-                    _movieFavoriteListLD.postValue(AsyncViewResource.Success(movies))
-                }
-            }catch (t:Throwable){
-                _movieFavoriteListLD.postValue(AsyncViewResource.Error(t))
-            }
         }
     }
 }

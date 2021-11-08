@@ -36,7 +36,6 @@ class MovieDetailViewModel @Inject constructor(
                         )
                     )
                 }
-
             }catch (t:Throwable){
                 _movieDetailLD.postValue(AsyncViewResource.Error(t))
             }
@@ -47,19 +46,6 @@ class MovieDetailViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             requestMovieFavorite.execute(
                 RequestMovieFavorite.Params(isFavorite,movieId, movieType))
-            _movieDetailLD.postValue(AsyncViewResource.Loading())
-            try {
-                getMovieDetail.execute(movieId).collect { movie ->
-                    _movieDetailLD.postValue(
-                        AsyncViewResource.Success(
-                            movieDetailMapper.map(movie)
-                        )
-                    )
-                }
-
-            }catch (t:Throwable){
-                _movieDetailLD.postValue(AsyncViewResource.Error(t))
-            }
         }
     }
 }

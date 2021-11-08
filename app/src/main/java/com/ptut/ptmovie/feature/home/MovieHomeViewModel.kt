@@ -66,17 +66,6 @@ class MovieHomeViewModel @Inject constructor(
             requestMovieFavorite.execute(
                 RequestMovieFavorite.Params(isFavorite, movieId, movieType)
             )
-            if (movieType == "upcoming") {
-                getMovies.execute("upcoming").collect { movieList ->
-                    val movies = movieList.map { movieMapper.map(it) }
-                    _movieUpComingListLD.postValue(AsyncViewResource.Success(movies))
-                }
-            } else {
-                getMovies.execute("popular").collect { movieList ->
-                    val movies = movieList.map { movieMapper.map(it) }
-                    _moviePopularListLD.postValue(AsyncViewResource.Success(movies))
-                }
-            }
         }
     }
 
@@ -104,7 +93,6 @@ class MovieHomeViewModel @Inject constructor(
                 }else{
                     _moviePopularListLD.postValue(AsyncViewResource.Error(t))
                 }
-
             }
         }
     }
