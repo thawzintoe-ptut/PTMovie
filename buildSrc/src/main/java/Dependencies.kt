@@ -212,6 +212,7 @@ object SqlDelight {
 object RoomDb{
     private const val room_version = ""
     const val roomRuntime =  "androidx.room:room-runtime:$room_version"
+    const val roomKtx = "androidx.room:room-ktx:$room_version"
     const val roomCompiler =  "androidx.room:room-compiler:$room_version"
     const val roomRx2 =  "androidx.room:room-rxjava2:$room_version"
     const val roomRx3 =  "androidx.room:room-rxjava3:$room_version"

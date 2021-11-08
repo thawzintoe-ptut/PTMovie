@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 30
 
     defaultConfig {
         minSdk 21
-        targetSdk 31
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
@@ -51,6 +51,6 @@ dependencies {
     kapt(Dagger.compiler)
 
     implementation(RoomDb.roomRuntime)
-    implementation(RoomDb.roomCompiler)
+    implementation(RoomDb.roomKtx)
     implementation(RoomDb.roomPaging)
 }
