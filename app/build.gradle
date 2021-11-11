@@ -70,6 +70,10 @@ dependencies {
     implementation(AssistedInject.annotations_dagger)
     kapt(AssistedInject.processor_dagger)
 
+    //hilt
+    implementation(Dagger.hilt_android)
+    kapt(Dagger.hilt_compiler)
+
     kapt(AndroidArchLifeCycle.lifecycle_compiler)
     api(CommonLibs.timber)
 

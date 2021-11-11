@@ -7,6 +7,7 @@ import androidx.work.WorkManager
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.ptut.appbase.di.AppInjector
 import com.ptut.ptmovie.di.DaggerAppComponent
+import com.ptut.ptmovie.di.DaggerWorkerFactory
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -29,6 +30,10 @@ class PTMovieApp:Application(), HasAndroidInjector {
             .build()
         appComponent.inject(this)
         AppInjector.initAutoInjection(this)
+
+        val factory: DaggerWorkerFactory = appComponent.factory()
+        WorkManager.initialize(this, Configuration.Builder().setWorkerFactory(factory).build())
+
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

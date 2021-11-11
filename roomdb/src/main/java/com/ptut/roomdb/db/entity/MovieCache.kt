@@ -12,31 +12,34 @@ data class MovieCache (
     val adult: Boolean,
     @ColumnInfo(name = "backdropPath")
     val backdropPath: String,
-    @ColumnInfo(name = "genre_ids")
+    @ColumnInfo(name = "genreIds")
     val genreIds: List<Long>,
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
     val id: Long,
     @ColumnInfo(name = "originalLanguage")
     val originalLanguage: String,
-    @ColumnInfo(name = "original_title")
+    @ColumnInfo(name = "originalTitle")
     val originalTitle: String,
     @ColumnInfo(name = "overview")
     val overview: String,
     @ColumnInfo(name = "popularity")
     val popularity: Double,
-    @ColumnInfo(name = "poster_path")
+    @ColumnInfo(name = "posterPath")
     val posterPath: String,
-    @ColumnInfo(name = "release_date")
+    @ColumnInfo(name = "releaseDate")
     val releaseDate: String,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "video")
     val video: Boolean,
-    @ColumnInfo(name = "vote_average")
+    @ColumnInfo(name = "voteAverage")
     val voteAverage: Float,
-    @ColumnInfo(name = "vote_count")
+    @ColumnInfo(name = "voteCount")
     val voteCount: Int,
-    @ColumnInfo(name = "movie_type")
-    val movieType: String
+    @ColumnInfo(name = "movieType")
+    val movieType: String,
+    @ColumnInfo(name = "isFavorite")
+    val isFavorite: Boolean
+
 )

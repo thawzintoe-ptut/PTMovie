@@ -21,7 +21,8 @@ import javax.inject.Singleton
         HomeFeatureModule::class,
         FavoriteFeatureModule::class,
         SplashFeatureModule::class,
-        MovieDetailFeatureModule::class
+        MovieDetailFeatureModule::class,
+        WorkerFeatureModule::class,
     ]
 )
 abstract class AppModule {

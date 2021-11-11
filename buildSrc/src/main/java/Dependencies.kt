@@ -154,6 +154,11 @@ object Dagger {
     const val android_core = "com.google.dagger:dagger-android:$version"
     const val android_support = "com.google.dagger:dagger-android-support:$version"
     const val android_processor = "com.google.dagger:dagger-android-processor:$version"
+
+    private const val hilt_version = "2.38.1"
+    const val hilt_classpath = "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+    const val hilt_android = "com.google.dagger:hilt-android:$hilt_version"
+    const val hilt_compiler = "com.google.dagger:hilt-compiler:$hilt_version"
 }
 
 object LeakCanary {
