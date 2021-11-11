@@ -6,13 +6,20 @@ import dagger.Provides
 import javax.inject.Singleton
 
 import androidx.room.Room
+import com.ptut.data.dataSource.MovieCacheDataSource
+import com.ptut.roomdb.MovieRoomCacheImpl
 import com.ptut.roomdb.db.AppDatabase
 import com.ptut.roomdb.db.dao.MovieDao
+import dagger.Binds
 
 
 @Module(includes = [RoomModule.Providers::class])
 abstract class RoomModule {
 
+    @Binds
+    abstract fun movieRoomCacheDataSource(
+        movieRoomCacheImpl: MovieRoomCacheImpl
+    ):MovieCacheDataSource
 
     @Module
     internal object  Providers{

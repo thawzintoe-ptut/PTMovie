@@ -26,7 +26,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_arrow_long_left" />
+                app:srcCompat="@drawable/ic_baseline_arrow_back" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/cb_favorite"

@@ -39,6 +39,7 @@ dependencies {
     api project(':domain')
     api project(':data')
     api project(':cache')
+    api project(':roomdb')
     api project(':network')
     //AndroidX
     implementation(AndroidXFragment.fragment)
