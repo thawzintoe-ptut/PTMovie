@@ -2,16 +2,16 @@ package com.ptut.ptmovie.di
 
 import android.app.Application
 import android.content.Context
-import coil.ImageLoader
 import com.ptut.appbase.di.module.BaseAppModule
-import dagger.Module
+import com.ptut.domain.usecase.GetMoviesRequest
 import com.ptut.ptmovie.di.AppModule.Provider
 import com.ptut.ptmovie.feature.favorite.FavoriteFeatureModule
 import com.ptut.ptmovie.feature.home.HomeFeatureModule
 import com.ptut.ptmovie.feature.moviedetail.MovieDetailFeatureModule
 import com.ptut.ptmovie.feature.splash.SplashFeatureModule
+import com.ptut.ptmovie.feature.startup.StartupFeatureModule
+import dagger.Module
 import dagger.Provides
-import org.threeten.bp.Clock
 import javax.inject.Singleton
 
 @Module(
@@ -21,7 +21,8 @@ import javax.inject.Singleton
         HomeFeatureModule::class,
         FavoriteFeatureModule::class,
         SplashFeatureModule::class,
-        MovieDetailFeatureModule::class
+        MovieDetailFeatureModule::class,
+        StartupFeatureModule::class
     ]
 )
 abstract class AppModule {
@@ -32,5 +33,7 @@ abstract class AppModule {
         fun context(application: Application): Context {
             return application.applicationContext
         }
+
+
     }
 }

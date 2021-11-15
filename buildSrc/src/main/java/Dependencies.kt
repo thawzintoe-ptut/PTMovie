@@ -209,3 +209,7 @@ object SqlDelight {
     const val flow_plugin = "com.squareup.sqldelight:coroutines-extensions-jvm:$version"
 }
 
+object AppStartup{
+    const val runtime =  "androidx.startup:startup-runtime:1.1.0"
+}
+

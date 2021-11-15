@@ -77,4 +77,5 @@ dependencies {
     implementation(Glide.runtime)
 
     implementation(CommonLibs.lottie_animation)
+    implementation(AppStartup.runtime)
 }

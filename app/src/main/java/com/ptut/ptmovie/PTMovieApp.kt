@@ -1,12 +1,15 @@
 package com.ptut.ptmovie
 
 import android.app.Application
+import androidx.startup.AppInitializer
 import androidx.viewbinding.BuildConfig
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.ptut.appbase.di.AppInjector
 import com.ptut.ptmovie.di.DaggerAppComponent
+import com.ptut.ptmovie.di.DaggerWorkerFactory
+import com.ptut.ptmovie.initializer.StartupInitializer
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -29,6 +32,10 @@ class PTMovieApp:Application(), HasAndroidInjector {
             .build()
         appComponent.inject(this)
         AppInjector.initAutoInjection(this)
+
+        AppInitializer.getInstance(this)
+            .initializeComponent(StartupInitializer::class.java)
+
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

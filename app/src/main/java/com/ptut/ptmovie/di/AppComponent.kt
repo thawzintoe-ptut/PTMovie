@@ -28,4 +28,6 @@ interface AppComponent {
 
   fun inject(application: PTMovieApp)
 
+  fun factory(): DaggerWorkerFactory
+
 }
