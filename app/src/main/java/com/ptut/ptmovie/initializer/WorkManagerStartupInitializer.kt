@@ -14,8 +14,6 @@ import javax.inject.Inject
 class WorkManagerStartupInitializer: Initializer<WorkManager> {
     override fun create(context: Context): WorkManager {
         WorkManager.initialize(context, Configuration.Builder().build())
-//        val configuration = Configuration.Builder().build()
-//        WorkManager.initialize(context, configuration)
         return WorkManager.getInstance(context)
     }
     override fun dependencies(): List<Class<out Initializer<*>>> {
