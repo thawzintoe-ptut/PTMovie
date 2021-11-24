@@ -18,17 +18,17 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-object DefaultDateTimeFormatter{
-  /** Returns a full date formatter (yyyy-MMM-dd HH:mm:ss) */
-  val FULL_DATE_WITH_TIME = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss", Locale.US)
+object DefaultDateTimeFormatter {
+    /** Returns a full date formatter (yyyy-MMM-dd HH:mm:ss) */
+    val FULL_DATE_WITH_TIME = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss", Locale.US)
 
-  /** Returns a ISO 8601 date formatter (yyyy-MM-dd'T'HH:mm:ss.SSS'Z') */
-  val ISO_8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+    /** Returns a ISO 8601 date formatter (yyyy-MM-dd'T'HH:mm:ss.SSS'Z') */
+    val ISO_8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
 }
 
 /** Returns `this` number of milliseconds since the epoch */
 val LocalDate.epochMilli
-  get() = this.toInstant().toEpochMilli()
+    get() = this.toInstant().toEpochMilli()
 
 /**
  * Gets the android device time format.
@@ -36,8 +36,7 @@ val LocalDate.epochMilli
  * @return [DateTimeFormatter] formatted the right way.
  */
 val Context.deviceTimeFormat
-  get() = DateTimeFormatter.ofPattern((DateFormat.getTimeFormat(this) as SimpleDateFormat).toPattern())
-
+    get() = DateTimeFormatter.ofPattern((DateFormat.getTimeFormat(this) as SimpleDateFormat).toPattern())
 
 /**
  * Gets the android device short date format.
@@ -45,7 +44,7 @@ val Context.deviceTimeFormat
  * @return [DateTimeFormatter] formatted the right way.
  */
 val Context.shortDateFormat
-  get() = DateTimeFormatter.ofPattern((DateFormat.getDateFormat(this) as SimpleDateFormat).toPattern())
+    get() = DateTimeFormatter.ofPattern((DateFormat.getDateFormat(this) as SimpleDateFormat).toPattern())
 
 /**
  * Gets the android device medium date format.
@@ -53,7 +52,7 @@ val Context.shortDateFormat
  * @return [DateTimeFormatter] formatted the right way.
  */
 val Context.mediumDateFormat
-  get() = DateTimeFormatter.ofPattern((DateFormat.getMediumDateFormat(this) as SimpleDateFormat).toPattern())
+    get() = DateTimeFormatter.ofPattern((DateFormat.getMediumDateFormat(this) as SimpleDateFormat).toPattern())
 
 /**
  * Gets the android device long date format.
@@ -61,7 +60,7 @@ val Context.mediumDateFormat
  * @return [DateTimeFormatter] formatted the right way.
  */
 val Context.longDateFormat
-  get() = DateTimeFormatter.ofPattern((DateFormat.getLongDateFormat(this) as SimpleDateFormat).toPattern())
+    get() = DateTimeFormatter.ofPattern((DateFormat.getLongDateFormat(this) as SimpleDateFormat).toPattern())
 
 /**
  * Sets the `date` to the last second of the day it's in.
@@ -71,7 +70,7 @@ val Context.longDateFormat
  * @return a new [LocalDateTime] object, same day as `date` but starting at the last second of the day.
  */
 val LocalDateTime.toLastSecond
-  get() = this.with(LocalTime.MAX)
+    get() = this.with(LocalTime.MAX)
 
 /**
  * Retrieves the first day of the `date` week.
@@ -81,7 +80,7 @@ val LocalDateTime.toLastSecond
  * @return a [LocalDate] instance representing the first day of the `date` week.
  */
 val LocalDate.firstDayOfWeek
-  get() = this.with(DayOfWeek.MONDAY)
+    get() = this.with(DayOfWeek.MONDAY)
 
 /** Converts `this` to an Instant with `ZoneOffset` offset */
 fun LocalDate.toInstant(offset: ZoneOffset = ZoneOffset.UTC) = atStartOfDay(offset).toInstant()
@@ -171,7 +170,7 @@ fun TemporalAccessor.haveSameMonthAndYearThan(temporalAccessor: TemporalAccessor
  * @return The time expressed in duration.
  */
 val Int.nanoseconds: Duration
-  get() = Duration.ofNanos(toLong())
+    get() = Duration.ofNanos(toLong())
 
 /**
  * Converts the integer expressed in microseconds to duration.
@@ -179,7 +178,7 @@ val Int.nanoseconds: Duration
  * @return The time expressed in duration.
  */
 val Int.microseconds: Duration
-  get() = Duration.ofNanos(toLong() * 1000L)
+    get() = Duration.ofNanos(toLong() * 1000L)
 
 /**
  * Converts the integer expressed in milliseconds to duration.
@@ -187,7 +186,7 @@ val Int.microseconds: Duration
  * @return The time expressed in duration.
  */
 val Int.milliseconds: Duration
-  get() = Duration.ofMillis(toLong())
+    get() = Duration.ofMillis(toLong())
 
 /**
  * Converts the integer expressed in seconds to duration.
@@ -195,7 +194,7 @@ val Int.milliseconds: Duration
  * @return The time expressed in duration.
  */
 val Int.seconds: Duration
-  get() = Duration.ofSeconds(toLong())
+    get() = Duration.ofSeconds(toLong())
 
 /**
  * Converts the integer expressed in minutes to duration.
@@ -203,7 +202,7 @@ val Int.seconds: Duration
  * @return The time expressed in duration.
  */
 val Int.minutes: Duration
-  get() = Duration.ofMinutes(toLong())
+    get() = Duration.ofMinutes(toLong())
 
 /**
  * Converts the integer expressed in hours to duration.
@@ -211,7 +210,7 @@ val Int.minutes: Duration
  * @return The time expressed in duration.
  */
 val Int.hours: Duration
-  get() = Duration.ofHours(toLong())
+    get() = Duration.ofHours(toLong())
 
 /**
  * Converts the integer expressed in days to a period of time.
@@ -219,7 +218,7 @@ val Int.hours: Duration
  * @return The time expressed in a period.
  */
 val Int.days: Period
-  get() = Period.ofDays(this)
+    get() = Period.ofDays(this)
 
 /**
  * Converts the integer expressed in weeks to a period of time.
@@ -227,7 +226,7 @@ val Int.days: Period
  * @return The time expressed in a period.
  */
 val Int.weeks: Period
-  get() = Period.ofWeeks(this)
+    get() = Period.ofWeeks(this)
 
 /**
  * Converts the integer expressed in months to a period of time.
@@ -235,7 +234,7 @@ val Int.weeks: Period
  * @return The time expressed in a period.
  */
 val Int.months: Period
-  get() = Period.ofMonths(this)
+    get() = Period.ofMonths(this)
 
 /**
  * Converts the integer expressed in years to a period of time.
@@ -243,7 +242,7 @@ val Int.months: Period
  * @return The time expressed in a period.
  */
 val Int.years: Period
-  get() = Period.ofYears(this)
+    get() = Period.ofYears(this)
 
 /**
  * Gets the LocalDateTime calculated as [current_date - duration].
@@ -251,7 +250,7 @@ val Int.years: Period
  * @return The LocalDateTime.
  */
 val Duration.ago: LocalDateTime
-  get() = baseTime() - this
+    get() = baseTime() - this
 
 /**
  * Gets the LocalDateTime calculated as [current_date + duration].
@@ -259,7 +258,7 @@ val Duration.ago: LocalDateTime
  * @return The LocalDateTime.
  */
 val Duration.fromNow: LocalDateTime
-  get() = baseTime() + this
+    get() = baseTime() + this
 
 /**
  * Gets the LocalDateTime calculated as [current_date - period].
@@ -267,7 +266,7 @@ val Duration.fromNow: LocalDateTime
  * @return The LocalDateTime.
  */
 val Period.ago: LocalDate
-  get() = baseDate() - this
+    get() = baseDate() - this
 
 /**
  * Gets the LocalDateTime calculated as [current_date + period].
@@ -275,7 +274,7 @@ val Period.ago: LocalDate
  * @return The LocalDateTime.
  */
 val Period.fromNow: LocalDate
-  get() = baseDate() + this
+    get() = baseDate() + this
 
 private fun baseDate(clock: Clock = Clock.systemDefaultZone()) = LocalDate.now(clock)
 

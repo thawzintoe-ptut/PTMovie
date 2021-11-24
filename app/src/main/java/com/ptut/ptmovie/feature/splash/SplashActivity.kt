@@ -6,7 +6,7 @@ import com.ptut.appbase.core.mvp.MvpActivity
 import com.ptut.ptmovie.databinding.ActivitySplashBinding
 import com.ptut.ptmovie.feature.MainActivity
 
-class SplashActivity : MvpActivity<ActivitySplashBinding, SplashView, SplashViewModel>(),SplashView {
+class SplashActivity : MvpActivity<ActivitySplashBinding, SplashView, SplashViewModel>(), SplashView {
     override val viewModel: SplashViewModel by contractedViewModel()
     override val binding: ActivitySplashBinding by lazy {
         ActivitySplashBinding.inflate(layoutInflater)
@@ -14,7 +14,7 @@ class SplashActivity : MvpActivity<ActivitySplashBinding, SplashView, SplashView
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        
+
         binding.btnSplashContinue.setOnClickListener {
             startActivity(
                 Intent(this, MainActivity::class.java)
@@ -24,8 +24,5 @@ class SplashActivity : MvpActivity<ActivitySplashBinding, SplashView, SplashView
     }
 
     override fun subscribeView() {
-
     }
-
-
 }

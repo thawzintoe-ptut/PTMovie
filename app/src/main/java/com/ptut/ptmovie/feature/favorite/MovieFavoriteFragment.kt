@@ -21,7 +21,8 @@ import com.ptut.ptmovie.feature.utils.initializeGrid
 
 class MovieFavoriteFragment :
     MvpFragment<FragmentMovieFavoriteBinding, MovieFavoriteView, MovieFavoriteViewModel>(),
-    MovieFavoriteView,ClickFavoriteMovieListener {
+    MovieFavoriteView,
+    ClickFavoriteMovieListener {
     override val viewModel: MovieFavoriteViewModel by contractedViewModel()
     override fun bindView(inflater: LayoutInflater): FragmentMovieFavoriteBinding {
         return FragmentMovieFavoriteBinding.inflate(inflater)
@@ -48,20 +49,22 @@ class MovieFavoriteFragment :
                 }
                 is AsyncViewResource.Success -> {
                     val data = asyncResult.value
-                    if(data.isNotEmpty()){
+                    if (data.isNotEmpty()) {
                         handleUpComingUI(rvFavoriteView = View.VISIBLE)
                         adapter.submitList(data)
-                    }else{
+                    } else {
                         handleUpComingUI(errorFavoriteView = View.VISIBLE)
                         binding.viewNoFavoriteData.ivEmpty.setImageDrawable(
-                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_no_movie))
+                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_no_movie)
+                        )
                         binding.viewNoFavoriteData.tvEmpty.text = resources.getString(R.string.no_favorite_data)
                         binding.viewNoFavoriteData.btnEmpty.visibility = View.GONE
                     }
                 }
                 is AsyncViewResource.Error -> {
                     binding.viewNoFavoriteData.ivEmpty.setImageDrawable(
-                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_movie_server_error))
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_movie_server_error)
+                    )
                     binding.viewNoFavoriteData.tvEmpty.text = resources.getString(R.string.something_went_wrong)
                     binding.viewNoFavoriteData.btnEmpty.visibility = View.GONE
                 }
@@ -70,10 +73,10 @@ class MovieFavoriteFragment :
     }
 
     override fun onClickFavoriteMovie(id: Long, isFavorite: Boolean, movieType: String) {
-        viewModel.requestFavorite(isFavorite,id,movieType)
+        viewModel.requestFavorite(isFavorite, id, movieType)
     }
 
-    override fun onClickMovieDetail(movieId: Long,view: AppCompatImageView) {
+    override fun onClickMovieDetail(movieId: Long, view: AppCompatImageView) {
         val intent = Intent(context, MovieDetailActivity::class.java)
         intent.putExtra(MovieDetailActivity.MOVIE_ID, movieId)
         intent.putExtra(
@@ -88,13 +91,12 @@ class MovieFavoriteFragment :
     }
 
     private fun handleUpComingUI(
-        rvFavoriteView:Int = View.GONE,
-        loadingFavoriteView:Int = View.GONE,
-        errorFavoriteView:Int = View.GONE
-    ){
+        rvFavoriteView: Int = View.GONE,
+        loadingFavoriteView: Int = View.GONE,
+        errorFavoriteView: Int = View.GONE
+    ) {
         binding.rvFavoriteMovie.visibility = rvFavoriteView
         binding.viewFavoriteLoading.clLoading.visibility = loadingFavoriteView
         binding.viewNoFavoriteData.rlViewEmpty.visibility = errorFavoriteView
     }
-
 }

@@ -17,5 +17,4 @@ abstract class HomeFeatureModule {
     @IntoMap
     @ViewModelKey(MovieHomeViewModel::class)
     abstract fun movieHomeViewModel(movieHomeViewModel: MovieHomeViewModel): ViewModel
-
 }

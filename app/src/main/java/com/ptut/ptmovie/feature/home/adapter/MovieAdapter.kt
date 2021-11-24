@@ -15,7 +15,6 @@ import com.ptut.ptmovie.databinding.ListItemMovieBinding
 import com.ptut.ptmovie.feature.home.MovieVO
 import javax.inject.Inject
 
-
 class MovieAdapter @Inject constructor(
     private val clickFavoriteMovieListener: ClickFavoriteMovieListener
 ) : BaseRecyclerViewAdapter<MovieVO, MovieViewHolder>(
@@ -28,28 +27,29 @@ class MovieAdapter @Inject constructor(
         }
     )
 ) {
-    private val clickListener = object :RecyclerViewItemClickListener{
+    private val clickListener = object : RecyclerViewItemClickListener {
         override fun onItemClick(view: View, position: Int) {
-           when(view.id){
-               R.id.cb_favorite ->{
-                   if(getItem(position).isFavorite){
-                       clickFavoriteMovieListener.onClickFavoriteMovie(
-                           getItem(position).id,false,getItem(position).movieType)
-                   }else{
-                       clickFavoriteMovieListener.onClickFavoriteMovie(
-                           getItem(position).id,true,getItem(position).movieType)
-                   }
-               }
-               R.id.iv_movie_poster ->
-                   clickFavoriteMovieListener.onClickMovieDetail( getItem(position).id,view as AppCompatImageView)
-           }
+            when (view.id) {
+                R.id.cb_favorite -> {
+                    if (getItem(position).isFavorite) {
+                        clickFavoriteMovieListener.onClickFavoriteMovie(
+                            getItem(position).id, false, getItem(position).movieType
+                        )
+                    } else {
+                        clickFavoriteMovieListener.onClickFavoriteMovie(
+                            getItem(position).id, true, getItem(position).movieType
+                        )
+                    }
+                }
+                R.id.iv_movie_poster ->
+                    clickFavoriteMovieListener.onClickMovieDetail(getItem(position).id, view as AppCompatImageView)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = parent.inflater().inflate(R.layout.list_item_movie, parent, false)
-        return MovieViewHolder(itemView,clickListener)
+        return MovieViewHolder(itemView, clickListener)
     }
-
 }
 
 class MovieViewHolder(
@@ -67,21 +67,23 @@ class MovieViewHolder(
             .placeholder(R.drawable.ic_place_holder)
             .into(binding.ivMoviePoster)
         binding.tvMovieTitle.text = item.originalTitle
-        if(item.isFavorite){
+        if (item.isFavorite) {
             binding.cbFavorite.setImageDrawable(
-                ContextCompat.getDrawable(itemView.context,R.drawable.ic_favorite_filled))
-        }else{
+                ContextCompat.getDrawable(itemView.context, R.drawable.ic_favorite_filled)
+            )
+        } else {
             binding.cbFavorite.setImageDrawable(
-                ContextCompat.getDrawable(itemView.context,R.drawable.ic_favorite_border))
+                ContextCompat.getDrawable(itemView.context, R.drawable.ic_favorite_border)
+            )
         }
     }
 
     init {
         binding.cbFavorite.setOnClickListener {
-            recyclerViewItemClickListener.onItemClick(it,bindingAdapterPosition)
+            recyclerViewItemClickListener.onItemClick(it, bindingAdapterPosition)
         }
         binding.ivMoviePoster.setOnClickListener {
-            recyclerViewItemClickListener.onItemClick(it,bindingAdapterPosition)
+            recyclerViewItemClickListener.onItemClick(it, bindingAdapterPosition)
         }
     }
 }

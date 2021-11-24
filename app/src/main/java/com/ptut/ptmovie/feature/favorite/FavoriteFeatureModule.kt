@@ -16,6 +16,5 @@ abstract class FavoriteFeatureModule {
     @Binds
     @IntoMap
     @ViewModelKey(MovieFavoriteViewModel::class)
-    abstract fun movieFavoriteViewModel(movieFavoriteViewModel: MovieFavoriteViewModel):ViewModel
-
+    abstract fun movieFavoriteViewModel(movieFavoriteViewModel: MovieFavoriteViewModel): ViewModel
 }
