@@ -24,7 +24,7 @@ data class MovieDetailVO(
     val isFavorite: Boolean
 )
 
-class MovieDetailDomainToVOMapper @Inject constructor():UnidirectionalMap<MovieDomain,MovieDetailVO>{
+class MovieDetailDomainToVOMapper @Inject constructor() : UnidirectionalMap<MovieDomain, MovieDetailVO> {
     override fun map(item: MovieDomain): MovieDetailVO {
         return MovieDetailVO(
             posterPath = item.posterPath,
@@ -45,5 +45,4 @@ class MovieDetailDomainToVOMapper @Inject constructor():UnidirectionalMap<MovieD
             movieType = item.movieType
         )
     }
-
 }

@@ -67,5 +67,4 @@ dependencies {
 
     //chuck
     debugApi(Chuck.core)
-    releaseApi(Chuck.no_op)
 }

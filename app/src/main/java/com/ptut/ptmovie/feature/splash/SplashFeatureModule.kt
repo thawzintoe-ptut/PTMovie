@@ -2,8 +2,6 @@ package com.ptut.ptmovie.feature.splash
 
 import androidx.lifecycle.ViewModel
 import com.ptut.appbase.di.viewmodel.ViewModelKey
-import com.ptut.ptmovie.feature.home.MovieHomeFragment
-import com.ptut.ptmovie.feature.home.MovieHomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

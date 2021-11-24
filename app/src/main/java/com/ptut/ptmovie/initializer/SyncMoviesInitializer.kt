@@ -9,26 +9,26 @@ import org.threeten.bp.Duration
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-class SyncMoviesInitializer:Initializer<Unit> {
+class SyncMoviesInitializer : Initializer<Unit> {
     override fun create(context: Context) {
-       try {
-           val request =
-               PeriodicWorkRequestBuilder<StartupWorker>(Duration.ofHours(1).seconds, TimeUnit.SECONDS)
-                   .setConstraints(
-                       Constraints.Builder()
-                           .setRequiredNetworkType(NetworkType.CONNECTED)
-                           .build()
-                   )
-                   .build()
+        try {
+            val request =
+                PeriodicWorkRequestBuilder<StartupWorker>(Duration.ofHours(1).seconds, TimeUnit.SECONDS)
+                    .setConstraints(
+                        Constraints.Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED)
+                            .build()
+                    )
+                    .build()
 
-           WorkManager.getInstance(context).enqueueUniquePeriodicWork(
-               WorkManagerConstants.SYNC_MOVIES,
-               ExistingPeriodicWorkPolicy.REPLACE,
-               request
-           )
-       }catch (t:Throwable){
-           Timber.e(t)
-       }
+            WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+                WorkManagerConstants.SYNC_MOVIES,
+                ExistingPeriodicWorkPolicy.REPLACE,
+                request
+            )
+        } catch (t: Throwable) {
+            Timber.e(t)
+        }
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> {

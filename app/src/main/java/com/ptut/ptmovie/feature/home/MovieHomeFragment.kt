@@ -77,7 +77,6 @@ class MovieHomeFragment :
                         binding.viewNoUpcomingData.tvEmpty.text =
                             resources.getString(R.string.no_data)
                     }
-
                 }
                 is AsyncViewResource.Error -> {
                     handleUpComingUI(errorUpComingView = View.VISIBLE)
@@ -179,5 +178,4 @@ class MovieHomeFragment :
             }
         }
     }
-
 }
