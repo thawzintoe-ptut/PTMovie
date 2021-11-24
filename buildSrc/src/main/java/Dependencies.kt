@@ -160,6 +160,8 @@ object LeakCanary {
     const val android = "com.squareup.leakcanary:leakcanary-android:2.7"
 }
 
+
+
 object Moshi {
     private const val version = "1.12.0"
     const val core = "com.squareup.moshi:moshi:$version"
@@ -207,5 +209,21 @@ object SqlDelight {
     const val android_driver = "com.squareup.sqldelight:android-driver:$version"
     const val runtime = "com.squareup.sqldelight:runtime-common:$version"
     const val flow_plugin = "com.squareup.sqldelight:coroutines-extensions-jvm:$version"
+}
+
+object Ktlint{
+    private const val spotless_version = "5.15.0"
+    private const val jLLeit_version = "10.2.0"
+    const val spotlessClassPath = "com.diffplug.spotless:spotless-plugin-gradle:$spotless_version"
+    const val jLLeitClassPath = "org.jlleitschuh.gradle:ktlint-gradle:$jLLeit_version"
+}
+
+object AppStartup{
+    const val runtime =  "androidx.startup:startup-runtime:1.1.0"
+}
+
+object Detekt {
+    private const val version ="1.19.0-RC2"
+    const val plugin ="io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$version"
 }
 

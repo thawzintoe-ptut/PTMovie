@@ -4,12 +4,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-fun RecyclerView.initialize(){
+fun RecyclerView.initialize() {
     hasFixedSize()
-    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
+    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 }
 
-fun RecyclerView.initializeHorizontal(){
+fun RecyclerView.initializeHorizontal() {
     hasFixedSize()
     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 }

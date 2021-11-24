@@ -1,7 +1,5 @@
 package com.ptut.ptmovie.feature.moviedetail
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -16,7 +14,6 @@ import com.ptut.appbase.core.mvp.MvpActivity
 import com.ptut.appbase.helper.AsyncViewResource
 import com.ptut.ptmovie.R
 import com.ptut.ptmovie.databinding.ActivityMovieDetailBinding
-import com.ptut.ptmovie.feature.MainActivity
 import org.threeten.bp.format.DateTimeFormatter
 
 class MovieDetailActivity :
@@ -82,7 +79,8 @@ class MovieDetailActivity :
                 is AsyncViewResource.Error -> {
                     handleDetailUI(errorDetailView = View.VISIBLE)
                     binding.viewNoDetailData.ivEmpty.setImageDrawable(
-                        ContextCompat.getDrawable(this, R.drawable.ic_movie_server_error))
+                        ContextCompat.getDrawable(this, R.drawable.ic_movie_server_error)
+                    )
                     binding.viewNoDetailData.tvEmpty.text = resources.getString(R.string.something_went_wrong)
                 }
             }
