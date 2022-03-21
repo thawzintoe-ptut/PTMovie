@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MovieCacheDataSourceImpl @Inject constructor(
-    private val db:AppDatabase,
-    private val movieCacheMapper:MovieCacheToDataMapper
-):MovieCacheDataSource {
+    private val db: AppDatabase,
+    private val movieCacheMapper: MovieCacheToDataMapper
+) : MovieCacheDataSource {
     override fun putMovies(movies: List<MovieData>) {
         db.transaction {
             movies.forEach { movie ->
@@ -60,10 +60,10 @@ class MovieCacheDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun setMovieFavorite(isFavorite:Boolean,movieId: Long, movieType: String) {
+    override fun setMovieFavorite(isFavorite: Boolean, movieId: Long, movieType: String) {
         db.transaction {
-           db.movieQueries
-                .updateMovieFavorite(isFavorite,movieId,movieType.toMovieType())
+            db.movieQueries
+                .updateMovieFavorite(isFavorite, movieId, movieType.toMovieType())
         }
     }
 
@@ -74,10 +74,10 @@ class MovieCacheDataSourceImpl @Inject constructor(
             .map(movieCacheMapper::map)
     }
 
-    private fun String.toMovieType():MovieType{
-        return if(this == "upcoming"){
+    private fun String.toMovieType(): MovieType {
+        return if (this == "upcoming") {
             MovieType.UPCOMING
-        }else{
+        } else {
             MovieType.POPULAR
         }
     }
