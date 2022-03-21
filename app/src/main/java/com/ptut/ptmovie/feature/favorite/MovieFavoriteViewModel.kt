@@ -10,17 +10,21 @@ import com.ptut.domain.usecase.RequestMovieFavorite
 import com.ptut.ptmovie.feature.home.MovieDomainToVOMapper
 import com.ptut.ptmovie.feature.home.MovieVO
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieFavoriteViewModel @Inject constructor(
     private val getFavoriteMovies: GetFavoriteMovies,
-    private val requestMovieFavorite: RequestMovieFavorite,
-    private val movieMapper: MovieDomainToVOMapper
+    private val requestMovieFavorite: RequestMovieFavorite
 ) : BaseViewModel<MovieFavoriteView>() {
     private val _movieFavoriteListLD = MutableLiveData<AsyncViewResource<List<MovieVO>>>()
-    private val movieFavoriteListLD: LiveData<AsyncViewResource<List<MovieVO>>> = _movieFavoriteListLD
+    private val movieFavoriteListLD: LiveData<AsyncViewResource<List<MovieVO>>> =
+        _movieFavoriteListLD
+
     override fun attachView(viewable: MovieFavoriteView) {
         super.attachView(viewable)
         view?.subscribeFavoriteMovies(movieFavoriteListLD)
@@ -28,15 +32,13 @@ class MovieFavoriteViewModel @Inject constructor(
 
     fun getFavoriteMovieList() {
         viewModelScope.launch(Dispatchers.IO) {
-            _movieFavoriteListLD.postValue(AsyncViewResource.Loading())
-            try {
-                getFavoriteMovies.execute(Unit).collect { movieList ->
-                    val movies = movieList.map { movieMapper.map(it) }
-                    _movieFavoriteListLD.postValue(AsyncViewResource.Success(movies))
+            getFavoriteMovies.execute(Unit)
+                .map { it.map(MovieDomainToVOMapper::map) }
+                .catch { _movieFavoriteListLD.postValue(AsyncViewResource.Error(it)) }
+                .onStart { _movieFavoriteListLD.postValue(AsyncViewResource.Loading()) }
+                .collect { movieList ->
+                    _movieFavoriteListLD.postValue(AsyncViewResource.Success(movieList))
                 }
-            } catch (t: Throwable) {
-                _movieFavoriteListLD.postValue(AsyncViewResource.Error(t))
-            }
         }
     }
 
