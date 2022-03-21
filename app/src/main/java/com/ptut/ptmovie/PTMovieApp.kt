@@ -30,8 +30,8 @@ class PTMovieApp : Application(), HasAndroidInjector {
         appComponent.inject(this)
         AppInjector.initAutoInjection(this)
 
-        AppInitializer.getInstance(this)
-            .initializeComponent(StartupInitializer::class.java)
+//        AppInitializer.getInstance(this)
+//            .initializeComponent(StartupInitializer::class.java)
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
