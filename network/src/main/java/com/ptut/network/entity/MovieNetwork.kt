@@ -1,7 +1,7 @@
 package com.ptut.network.entity
 
 import com.ptut.data.entity.MovieData
-import com.ptut.domain.mapper.UnidirectionalMap
+import com.ptut.data.mapper.UnidirectionalMap
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import org.threeten.bp.ZonedDateTime
@@ -62,5 +62,4 @@ class MovieNetworkToDataMapper @Inject constructor() : UnidirectionalMap<MovieNe
             isFavorite = false
         )
     }
-
 }

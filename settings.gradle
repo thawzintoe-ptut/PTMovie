@@ -10,6 +10,6 @@ rootProject.name = "PTMovie"
 include ':app'
 include ':appbase'
 include ':cache'
-include ':network'
 include ':data'
 include ':domain'
+include ':network'

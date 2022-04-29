@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.ptut.cache.MovieCacheDataSourceImpl
-import com.ptut.cache.columnadapter.IntegerArrayColumnAdapter
 import com.ptut.cache.columnadapter.LocalDateColumnAdapter
 import com.ptut.cache.columnadapter.LongArrayColumnAdapter
 import com.ptut.cache.database.AppDatabase
@@ -24,7 +23,7 @@ abstract class CacheModule {
     @Binds
     abstract fun movieCacheDataSource(
         movieCacheDataSourceImpl: MovieCacheDataSourceImpl
-    ):MovieCacheDataSource
+    ): MovieCacheDataSource
 
     @Module
     internal object Providers {
@@ -52,7 +51,5 @@ abstract class CacheModule {
         fun sharedPref(context: Context): SharedPreferences {
             return PreferenceManager.getDefaultSharedPreferences(context)
         }
-
     }
-
 }

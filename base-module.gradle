@@ -1,8 +1,8 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.squareup.sqldelight'
 
 android {
     compileSdk BuildConfig.compileSdk
@@ -38,33 +38,51 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+sqldelight {
+    AppDatabase {
+        packageName = "com.ptut.cache.database"
+    }
 }
 
 dependencies {
-    implementation project(':data')
-    kaptAndroidTest(Dagger.compiler)
-    //Moshi
-    implementation(Moshi.core)
-    kapt(Moshi.code_gen)
+    //AndroidX
+    implementation(AndroidXFragment.fragment)
+    implementation(AndroidXFragment.fragment_ktx)
+    implementation(AndroidXCore.core_ktx)
+    implementation(AndroidXRecyclerView.recycler_view)
+    implementation(AndroidXAppCompat.app_compat)
+    implementation(MaterialDesign.material)
 
-    //OkHttp
-    implementation(OkHttp.client)
-    implementation(OkHttp.logger)
-
-    //Retrofit
-    api(Retrofit.core)
-    implementation(Retrofit.moshi_converter)
-
-    //Dagger
-    implementation(Dagger.core)
-    kapt(Dagger.compiler)
+    //Kotlin
+    implementation(KotlinCoroutine.android)
 
     //JavaxInject
     implementation(CommonLibs.javaxInject)
 
-    //Logging
-    implementation(CommonLibs.timber)
+    //Dagger
+    implementation(Dagger.core)
+    implementation(Dagger.android_core)
+    implementation(Dagger.android_support)
+    implementation(Dagger.compiler)
+    kaptAndroidTest(Dagger.compiler)
 
-    //chuck
-    debugApi(Chuck.core)
+    //Logging
+    implementation (CommonLibs.timber)
+
+    //Threetenbp
+    implementation(ThreeTenBp.android)
 }

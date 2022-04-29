@@ -1,24 +1,27 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
-    id("io.gitlab.arturbosch.detekt").version("1.19.0-RC2")
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdk BuildConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.ptut.ptmovie"
+        applicationId = BuildConfig.appId
         minSdk BuildConfig.minSdk
         targetSdk BuildConfig.targetSdk
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
-
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Compose.composeCompilerVersion
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -26,24 +29,27 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
-    kapt {
-        correctErrorTypes true
-    }
 }
 
-
-
 dependencies {
-    implementation project(':appbase')
+    implementation Compose.compiler
+    implementation Compose.ui
+    implementation Compose.uiToolingPreview
+    implementation Compose.hiltNavigationCompose
+    implementation Compose.material
+    implementation Compose.runtime
+    implementation Compose.navigation
+    implementation Compose.viewModelCompose
+    implementation Compose.activityCompose
+
     implementation(AndroidXAppCompat.core_ktx)
     implementation(AndroidXAppCompat.app_compat)
     implementation(AndroidXAppCompat.swipe_refresh)
@@ -51,8 +57,31 @@ dependencies {
     implementation(AndroidXAppCompat.recycler_view)
     implementation(AndroidXAppCompat.recycler_selection)
     implementation(MaterialDesign.material)
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+
+    kapt DaggerHilt.hiltCompiler
+    implementation DaggerHilt.hiltAndroid
+
+    testImplementation Testing.junit4 
+    testImplementation Testing.junitAndroidExt 
+    testImplementation Testing.truth 
+    testImplementation Testing.coroutines 
+    testImplementation Testing.turbine 
+    testImplementation Testing.composeUiTest
+    testImplementation Testing.mockk
+    testImplementation Testing.mockWebServer 
+
+    androidTestImplementation Testing.junit4 
+    androidTestImplementation Testing.junitAndroidExt 
+    androidTestImplementation Testing.truth 
+    androidTestImplementation Testing.coroutines 
+    androidTestImplementation Testing.turbine 
+    androidTestImplementation Testing.composeUiTest
+    androidTestImplementation Testing.mockk
+    androidTestImplementation Testing.mockWebServer 
+    androidTestImplementation Testing.hiltTesting
+
     testImplementation(AndroidJunit.junit)
     androidTestImplementation(AndroidJunit.junit_ext)
     androidTestImplementation(AndroidJunit.junit_espresso_core)
@@ -61,9 +90,9 @@ dependencies {
     implementation(AndroidArchNavigation.ui_ktx)
     kapt(AndroidArchNavigation.safe_args_generator)
 
-    //AndroidX work
+    // AndroidX work
     implementation(AndroidArchWork.work_runtime_ktx)
-    //Inject
+    // Inject
     implementation(Dagger.core)
     implementation(Dagger.android_core)
     implementation(Dagger.android_support)
@@ -82,6 +111,4 @@ dependencies {
     implementation(CommonLibs.lottie_animation)
     implementation(AppStartup.runtime)
     debugImplementation(LeakCanary.android)
-
 }
-

@@ -1,7 +1,8 @@
 object BuildConfig {
-    const val compileSdk = 30
+    const val appId = "com.ptut.ptmovie"
+    const val compileSdk = 31
     const val minSdk = 26
-    const val targetSdk = 30
+    const val targetSdk = 31
 
     private const val versionMajor = 0
     private const val versionMinor = 0
@@ -14,12 +15,12 @@ object BuildConfig {
         versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
 }
 
-object GradlePlugin{
+object GradlePlugin {
     const val android_tool = "com.android.tools.build:gradle:7.0.3"
 }
 
 object Kotlin {
-    private const val version = "1.5.31"
+    const val version = "1.6.20"
     const val stdblib_jdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
     const val gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 }
@@ -48,7 +49,7 @@ object CommonLibs {
 }
 
 object AndroidXAppCompat {
-    const val core_ktx= "androidx.core:core-ktx:1.6.0"
+    const val core_ktx = "androidx.core:core-ktx:1.6.0"
     const val app_compat = "androidx.appcompat:appcompat:1.3.1"
     const val swipe_refresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:2.1.1"
@@ -85,12 +86,11 @@ object AndroidXFragment {
     const val fragment_testing = "androidx.fragment:fragment-testing:$version"
 }
 
-
 object MaterialDesign {
     const val material = "com.google.android.material:material:1.4.0"
 }
 
-object AndroidJunit{
+object AndroidJunit {
     const val junit = "junit:junit:4.13.2"
     const val junit_ext = "androidx.test.ext:junit:1.1.3"
     const val junit_espresso_core = "androidx.test.espresso:espresso-core:3.4.0"
@@ -98,7 +98,7 @@ object AndroidJunit{
 
 object AndroidArchLifeCycle {
     private const val lifecycle_version = "2.4.0-rc01"
-    const val common_java= "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    const val common_java = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
@@ -129,7 +129,6 @@ object AndroidArchWork {
     const val work_runtime = "androidx.work:work-runtime:$version"
     const val work_runtime_ktx = "androidx.work:work-runtime-ktx:$version"
     const val work_testing = "androidx.work:work-testing:$version"
-
 }
 
 object KotlinCoroutine {
@@ -160,8 +159,6 @@ object LeakCanary {
     const val android = "com.squareup.leakcanary:leakcanary-android:2.7"
 }
 
-
-
 object Moshi {
     private const val version = "1.12.0"
     const val core = "com.squareup.moshi:moshi:$version"
@@ -169,7 +166,7 @@ object Moshi {
 }
 
 object OkHttp {
-    private const val version = "4.9.2"
+    private const val version = "4.9.3"
     const val client = "com.squareup.okhttp3:okhttp:$version"
     const val logger = "com.squareup.okhttp3:logging-interceptor:$version"
     const val mock_web_server = "com.squareup.okhttp3:mockwebserver:$version"
@@ -181,7 +178,7 @@ object Retrofit {
     const val moshi_converter = "com.squareup.retrofit2:converter-moshi:$version"
 }
 
-object Chuck{
+object Chuck {
     private const val version = "1.1.0"
     const val core = "com.readystatesoftware.chuck:library:$version"
     const val no_op = "com.readystatesoftware.chuck:library-no-op:$version"
@@ -211,19 +208,18 @@ object SqlDelight {
     const val flow_plugin = "com.squareup.sqldelight:coroutines-extensions-jvm:$version"
 }
 
-object Ktlint{
+object Ktlint {
     private const val spotless_version = "5.15.0"
     private const val jLLeit_version = "10.2.0"
     const val spotlessClassPath = "com.diffplug.spotless:spotless-plugin-gradle:$spotless_version"
     const val jLLeitClassPath = "org.jlleitschuh.gradle:ktlint-gradle:$jLLeit_version"
 }
 
-object AppStartup{
-    const val runtime =  "androidx.startup:startup-runtime:1.1.0"
+object AppStartup {
+    const val runtime = "androidx.startup:startup-runtime:1.1.0"
 }
 
 object Detekt {
-    private const val version ="1.19.0-RC2"
-    const val plugin ="io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$version"
+    private const val version = "1.19.0-RC2"
+    const val plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$version"
 }
-

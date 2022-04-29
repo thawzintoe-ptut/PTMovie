@@ -1,6 +1,6 @@
 package com.ptut.ptmovie.feature.moviedetail
 
-import com.ptut.domain.mapper.UnidirectionalMap
+import com.ptut.data.mapper.UnidirectionalMap
 import com.ptut.domain.model.MovieDomain
 import org.threeten.bp.LocalDate
 import javax.inject.Inject

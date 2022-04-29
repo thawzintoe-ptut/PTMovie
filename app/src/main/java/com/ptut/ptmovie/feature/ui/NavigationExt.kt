@@ -1,7 +1,9 @@
 package com.ptut.ptmovie.feature.ui
 
 import android.content.Intent
+import android.os.Build
 import android.util.SparseArray
+import androidx.annotation.RequiresApi
 import androidx.core.util.forEach
 import androidx.core.util.set
 import androidx.fragment.app.FragmentManager
@@ -12,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ptut.ptmovie.R
 
+@RequiresApi(Build.VERSION_CODES.S)
 fun BottomNavigationView.customSetupWithNavController(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
@@ -192,7 +195,7 @@ private fun BottomNavigationView.setupItemReselected(
         val navController = selectedFragment.navController
         // Pop the back stack to the start destination of the current navController graph
         navController.popBackStack(
-            navController.graph.startDestination, false
+            navController.graph.startDestinationId, false
         )
     }
 }

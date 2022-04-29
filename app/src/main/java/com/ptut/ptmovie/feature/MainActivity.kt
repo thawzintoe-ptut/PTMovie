@@ -1,6 +1,8 @@
 package com.ptut.ptmovie.feature
 
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var currentNavController: LiveData<NavController>? = null
     private lateinit var binding: ActivityMainBinding
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         /*setContentView(R.layout.activity_main)*/
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         } // Else, need to wait for onRestoreInstanceState
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         // Now that BottomNavigationBar has restored its instance state
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Called on first creation and when restoring state.
      */
+    @RequiresApi(Build.VERSION_CODES.S)
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = binding.bottomNavigationView
         val navGraphIds = listOf(

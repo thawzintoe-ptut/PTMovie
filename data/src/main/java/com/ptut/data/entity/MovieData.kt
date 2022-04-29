@@ -1,8 +1,7 @@
 package com.ptut.data.entity
 
-import com.ptut.domain.mapper.UnidirectionalMap
+import com.ptut.data.mapper.UnidirectionalMap
 import com.ptut.domain.model.MovieDomain
-import com.ptut.domain.usecase.RequestMovieFavorite
 import org.threeten.bp.LocalDate
 import javax.inject.Inject
 

@@ -1,7 +1,6 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'java-library'
+    id 'kotlin'
 }
 
 android {
@@ -32,6 +31,17 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+sqldelight {
+    AppDatabase {
+        packageName = "com.ptut.cache.database"
     }
 }
 

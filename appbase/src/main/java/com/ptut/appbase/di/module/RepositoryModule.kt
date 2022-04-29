@@ -7,11 +7,10 @@ import com.ptut.network.di.NetworkModule
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [ NetworkModule::class,CacheModule::class])
+@Module(includes = [ NetworkModule::class, CacheModule::class])
 abstract class RepositoryModule {
-  @Binds
-  abstract fun movieRepository(
-    movieRepositoryImpl: MovieRepositoryImpl
-  ): MovieRepository
-
+    @Binds
+    abstract fun movieRepository(
+        movieRepositoryImpl: MovieRepositoryImpl
+    ): MovieRepository
 }

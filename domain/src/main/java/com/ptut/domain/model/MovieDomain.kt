@@ -1,8 +1,6 @@
 package com.ptut.domain.model
 
-import com.ptut.domain.mapper.UnidirectionalMap
 import org.threeten.bp.LocalDate
-import javax.inject.Inject
 
 data class MovieDomain(
     val adult: Boolean,

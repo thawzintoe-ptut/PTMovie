@@ -3,10 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
       <module name="PTMovie.app" target="11" />
-      <module name="PTMovie.appbase" target="11" />
       <module name="PTMovie.buildSrc" target="11" />
-      <module name="PTMovie.cache" target="11" />
-      <module name="PTMovie.network" target="11" />
+      <module name="PTMovie.data" target="11" />
+      <module name="PTMovie.domain" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

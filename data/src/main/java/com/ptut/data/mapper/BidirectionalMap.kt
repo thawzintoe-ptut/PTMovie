@@ -1,4 +1,4 @@
-package com.ptut.domain.mapper
+package com.ptut.data.mapper
 
 interface BidirectionalMap<F, T> {
 

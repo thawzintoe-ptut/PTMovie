@@ -4,11 +4,7 @@ import com.ptut.data.dataSource.MovieNetworkDataSource
 import com.ptut.data.entity.MovieData
 import com.ptut.network.entity.MovieNetwork
 import com.ptut.network.entity.MovieNetworkToDataMapper
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
-import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import javax.inject.Inject
 
@@ -29,7 +25,7 @@ class MovieNetworkDataSourceImpl @Inject constructor(
             val movie = MovieData(
                 posterPath = item.posterPath,
                 originalTitle = item.originalTitle,
-                releaseDate =  LocalDate.parse(item.releaseDate, dateTimeFormatter),
+                releaseDate = LocalDate.parse(item.releaseDate, dateTimeFormatter),
                 id = item.id,
                 voteAverage = item.voteAverage,
                 adult = item.adult,

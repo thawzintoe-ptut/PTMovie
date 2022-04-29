@@ -28,16 +28,13 @@ class MovieRepositoryImpl @Inject constructor(
         movieCacheDataSource.setMovieFavorite(isFavorite, movieId, movieType)
     }
 
-    override fun getMovieFavorite():Flow<List<MovieDomain>> {
+    override fun getMovieFavorite(): Flow<List<MovieDomain>> {
         return movieCacheDataSource.getFavoriteMovies()
             .map { movies -> movies.map(movieDataToDomainMapper::map) }
     }
 
     override fun getMovieById(movieId: Long): Flow<MovieDomain> {
-       return movieCacheDataSource.getMovieById(movieId)
-           .map(movieDataToDomainMapper::map)
+        return movieCacheDataSource.getMovieById(movieId)
+            .map(movieDataToDomainMapper::map)
     }
-
-
-
 }
