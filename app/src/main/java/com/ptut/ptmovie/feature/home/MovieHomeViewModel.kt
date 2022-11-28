@@ -9,7 +9,10 @@ import com.ptut.domain.usecase.GetMovieUpComing
 import com.ptut.domain.usecase.GetMoviesRequest
 import com.ptut.domain.usecase.RequestMovieFavorite
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -17,8 +20,7 @@ import javax.inject.Inject
 class MovieHomeViewModel @Inject constructor(
     private val getMovies: GetMovieUpComing,
     private val requestMovieFavorite: RequestMovieFavorite,
-    private val getMoviesRequest: GetMoviesRequest,
-    private val movieMapper: MovieDomainToVOMapper
+    private val getMoviesRequest: GetMoviesRequest
 ) : BaseViewModel<MovieHomeView>() {
 
     private val _movieUpComingListLD = MutableLiveData<AsyncViewResource<List<MovieVO>>>()
@@ -35,29 +37,25 @@ class MovieHomeViewModel @Inject constructor(
 
     fun getUpcomingMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            _movieUpComingListLD.postValue(AsyncViewResource.Loading())
-            try {
-                getMovies.execute("upcoming").collect { movieList ->
-                    val movies = movieList.map { movieMapper.map(it) }
-                    _movieUpComingListLD.postValue(AsyncViewResource.Success(movies))
+            getMovies.execute("upcoming")
+                .map { it.map(MovieDomainToVOMapper::map) }
+                .catch { _movieUpComingListLD.postValue(AsyncViewResource.Error(it)) }
+                .onStart { _movieUpComingListLD.postValue(AsyncViewResource.Loading()) }
+                .collect { movieList ->
+                    _movieUpComingListLD.postValue(AsyncViewResource.Success(movieList))
                 }
-            } catch (t: Throwable) {
-                _movieUpComingListLD.postValue(AsyncViewResource.Error(t))
-            }
         }
     }
 
     fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            _moviePopularListLD.postValue(AsyncViewResource.Loading())
-            try {
-                getMovies.execute("popular").collect { movieList ->
-                    val movies = movieList.map { movieMapper.map(it) }
-                    _moviePopularListLD.postValue(AsyncViewResource.Success(movies))
+            getMovies.execute("popular")
+                .map { it.map(MovieDomainToVOMapper::map) }
+                .catch { _moviePopularListLD.postValue(AsyncViewResource.Error(it)) }
+                .onStart { _moviePopularListLD.postValue(AsyncViewResource.Loading()) }
+                .collect { movieList ->
+                    _moviePopularListLD.postValue(AsyncViewResource.Success(movieList))
                 }
-            } catch (t: Throwable) {
-                _moviePopularListLD.postValue(AsyncViewResource.Error(t))
-            }
         }
     }
 
@@ -75,15 +73,17 @@ class MovieHomeViewModel @Inject constructor(
                 getMoviesRequest.execute(movieType)
                 if (movieType == MOVIE_UPCOMING) {
                     _movieUpComingListLD.postValue(AsyncViewResource.Loading())
-                    getMovies.execute(MOVIE_UPCOMING).collect { movieList ->
-                        val movies = movieList.map { movieMapper.map(it) }
-                        _movieUpComingListLD.postValue(AsyncViewResource.Success(movies))
+                    getMovies.execute(MOVIE_UPCOMING)
+                        .map { it.map(MovieDomainToVOMapper::map) }
+                        .collect { movieList ->
+                        _movieUpComingListLD.postValue(AsyncViewResource.Success(movieList))
                     }
                 } else {
                     _moviePopularListLD.postValue(AsyncViewResource.Loading())
-                    getMovies.execute(MOVIE_POPULAR).collect { movieList ->
-                        val movies = movieList.map { movieMapper.map(it) }
-                        _moviePopularListLD.postValue(AsyncViewResource.Success(movies))
+                    getMovies.execute(MOVIE_POPULAR)
+                        .map { it.map(MovieDomainToVOMapper::map) }
+                        .collect { movieList ->
+                        _moviePopularListLD.postValue(AsyncViewResource.Success(movieList))
                     }
                 }
             } catch (t: Throwable) {

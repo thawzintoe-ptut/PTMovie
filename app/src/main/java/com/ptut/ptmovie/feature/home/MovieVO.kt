@@ -15,8 +15,8 @@ data class MovieVO(
     val movieType: String
 )
 
-class MovieDomainToVOMapper @Inject constructor() : UnidirectionalMap<MovieDomain, MovieVO> {
-    override fun map(item: MovieDomain): MovieVO {
+object MovieDomainToVOMapper {
+    fun map(item: MovieDomain): MovieVO {
         return MovieVO(
             posterPath = item.posterPath,
             originalTitle = item.originalTitle,
