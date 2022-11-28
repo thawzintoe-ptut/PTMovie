@@ -4,8 +4,14 @@
     <bytecodeTargetLevel target="1.8">
       <module name="PTMovie.app" target="11" />
       <module name="PTMovie.buildSrc" target="11" />
+      <module name="PTMovie.buildSrc.main" target="11" />
+      <module name="PTMovie.buildSrc.test" target="11" />
       <module name="PTMovie.data" target="11" />
+      <module name="PTMovie.data.main" target="11" />
+      <module name="PTMovie.data.test" target="11" />
       <module name="PTMovie.domain" target="11" />
+      <module name="PTMovie.domain.main" target="11" />
+      <module name="PTMovie.domain.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
